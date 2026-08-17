@@ -44,6 +44,8 @@
 *Provide a screenshot showing your active milestone(s) and the granular tracking issues linked directly to them.*
 
 ![Milestones and Issues Screenshot](./evidence/milestones.png)
+<img width="1600" height="526" alt="image" src="https://github.com/user-attachments/assets/5f34c87a-fab1-4f7c-b970-b6b4388234e5" />
+
 
 
 * **Caption:** GitHub Milestones tracking Phase 1, Phase 2, and Phase 3 development issues.
@@ -52,6 +54,8 @@
 *Provide a screenshot of your GitHub Project Board with your issues organized dynamically across columns (To Do, In Progress, Done).*
 
 ![Project Board Screenshot](./evidence/project_board.png)
+<img width="1600" height="695" alt="image" src="https://github.com/user-attachments/assets/14287292-58ae-4b28-a8fd-661fd20fec8e" />
+
 
 * **Caption:** Kanban Project Board managing issue progression across To Do, In Progress, and Done columns.
 
@@ -59,6 +63,8 @@
 *Provide a screenshot showing your local or remote Git branch list, highlighting your use of conventional, issue-linked naming patterns (e.g., `feat/`, `fix/`, `style/`).*
 
 ![Branching Architecture Screenshot](./evidence/branch_list.png)
+<img width="390" height="566" alt="image" src="https://github.com/user-attachments/assets/68ce1df3-13e0-4801-9309-7aee775e5b6d" />
+
 
 * **Caption:** Branch architecture demonstrating `feat/`, `style/`, and `fix/` issue-linked conventions.
 
@@ -66,6 +72,8 @@
 *Provide a screenshot of a completed or open Pull Request (PR) on GitHub that clearly shows it is linked to a related development issue.*
 
 ![Pull Request Traceability Screenshot](./evidence/pull_request.png)
+
+
 
 * **Caption:** Pull Request demonstrating issue linkage and automated closing of linked milestones.
 
@@ -82,6 +90,9 @@
 #### Step 1: Generating the Clash
 *Screenshot showing the merge attempt and the conflict warning.*
 
+<img width="929" height="177" alt="image" src="https://github.com/user-attachments/assets/2277249c-82e2-4a7e-9e93-21209df550ff" />
+
+
 ![Attempted Merge Warning](./evidence/conflict_evidence_1_merge.png)
 
 * **Caption:** Merging branch `main` (containing font-size: 2.8rem) into branch `conflict-b` (containing font-size: 3.2rem) resulted in an immediate content merge conflict in `css/style.css`.
@@ -90,6 +101,8 @@
 *Screenshot showing the raw, unresolved conflict markers (`<<<<<<< HEAD`, `=======`, `>>>>>>>`) in your editor.*
 
 ![Raw Conflict Markers](./evidence/conflict_evidence_1.png)
+
+
 
 * **Caption:** The raw conflict markers in `css/style.css` show the clash between HEAD (`font-size: 3.2rem`) and main (`font-size: 2.8rem`).
 
@@ -109,6 +122,9 @@
 **Why does this cause trigger a conflict?** When a file is renamed and modified with conflicting values on two separate branches, Git's merge engine flags a content conflict because the state on both branches cannot be auto-merged.
 
 ![Conflict 2 Markers](./evidence/conflict_evidence_2.png)
+<img width="929" height="177" alt="image" src="https://github.com/user-attachments/assets/d9170c15-4bd6-448c-bcb3-e1748207d395" />
+
+
 
 * **Caption:** Merge conflict in `js/cart_store.js` caused by conflicting `STORAGE_KEY` values (`v3` vs `v2`) across renamed branches.
 
@@ -121,6 +137,10 @@
 **Why does this cause trigger a conflict?** One branch deleted `about.html` while another branch modified content inside `about.html`. Git cannot determine whether to preserve the modified file or delete it, forcing a manual resolution.
 
 ![Conflict 3 Markers](./evidence/conflict_evidence_3.png)
+<img width="1004" height="119" alt="image" src="https://github.com/user-attachments/assets/e8315a89-78ee-40ca-8ee6-13afccd7f88c" />
+
+
+
 
 * **Caption:** Delete/Modify conflict on `about.html` where `conflict-e` deleted the file while `conflict-f` modified .
 
