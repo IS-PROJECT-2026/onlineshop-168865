@@ -796,3 +796,19 @@ button {
   font-weight: 700;
   font-size: 0.95rem;
 }
+
+/* --- RESPONSIVE MOBILE NAVIGATION (ISSUE #11) --- */
+@media (max-width: 640px) {
+  .main-nav a,
+  .nav-links a,
+  .nav-link {
+    display: none;
+  }
+
+  .main-nav a.cart-link,
+  .nav-links a.cart-link,
+  a.cart-link,
+  .cart-icon-btn {
+    display: inline-flex;
+  }
+}
