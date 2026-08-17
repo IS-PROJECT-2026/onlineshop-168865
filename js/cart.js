@@ -1,15 +1,29 @@
 /**
  * SOKO Online Shop - Cart & Storefront Controller
- * In-memory shopping cart state management & UI interactions for Issue #6.
+ * LocalStorage persistent cart state management for Issue #7.
  */
 
-// In-memory cart array
-let cart = [];
+const STORAGE_KEY = "soko_cart_v1";
 
-// --- CART STATE MANAGEMENT ---
+// --- CART STATE MANAGEMENT (LOCALSTORAGE PERSISTENCE) ---
 
 function getCart() {
-  return cart;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    console.error("Failed to parse cart from localStorage", e);
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    updateHeaderCartBadge();
+  } catch (e) {
+    console.error("Failed to save cart to localStorage", e);
+  }
 }
 
 function addToCart(productId, quantity = 1) {
@@ -20,6 +34,7 @@ function addToCart(productId, quantity = 1) {
     return;
   }
 
+  const cart = getCart();
   const existingItem = cart.find(item => item.id === productId);
 
   if (existingItem) {
@@ -35,7 +50,7 @@ function addToCart(productId, quantity = 1) {
     });
   }
 
-  updateHeaderCartBadge();
+  saveCart(cart);
   showToast(`Added "${product.name}" to your cart!`, "success");
 }
 
@@ -46,19 +61,21 @@ function updateQuantity(productId, newQty) {
     return;
   }
 
+  const cart = getCart();
   const item = cart.find(i => i.id === productId);
   if (item) {
     item.quantity = newQty;
-    updateHeaderCartBadge();
+    saveCart(cart);
     if (typeof renderCartPage === "function") renderCartPage();
     if (typeof renderCheckoutPage === "function") renderCheckoutPage();
   }
 }
 
 function removeFromCart(productId) {
+  let cart = getCart();
   const item = cart.find(i => i.id === productId);
   cart = cart.filter(i => i.id !== productId);
-  updateHeaderCartBadge();
+  saveCart(cart);
   if (item) {
     showToast(`Removed "${item.name}" from cart.`, "info");
   }
@@ -67,17 +84,19 @@ function removeFromCart(productId) {
 }
 
 function clearCart() {
-  cart = [];
+  localStorage.removeItem(STORAGE_KEY);
   updateHeaderCartBadge();
   if (typeof renderCartPage === "function") renderCartPage();
   if (typeof renderCheckoutPage === "function") renderCheckoutPage();
 }
 
 function getCartCount() {
+  const cart = getCart();
   return cart.reduce((total, item) => total + item.quantity, 0);
 }
 
 function getCartSubtotal() {
+  const cart = getCart();
   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
 }
 
