@@ -3,7 +3,7 @@
  * LocalStorage persistent cart state management for Issue #7.
  */
 
-const STORAGE_KEY = "soko_cart_v3";
+const STORAGE_KEY = "soko_cart_v1";
 
 // --- CART STATE MANAGEMENT (LOCALSTORAGE PERSISTENCE) ---
 
