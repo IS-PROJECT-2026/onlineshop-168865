@@ -2,7 +2,7 @@
 
 Soko is a static online shop for Kenyan artisan goods — woven baskets, kitenge textiles, beaded jewellery, ceramics, woodwork and leatherwork. Built as a mini-project demonstrating a professional Git/GitHub workflow: milestones, issues, a Kanban board, branch protection, Conventional Commits, pull requests, resolved merge conflicts, and continuous deployment via GitHub Pages.
 
-**Live site:** https://IS-PROJECT-2026.github.io/onlineshop-168865/
+**Live site:** [https://is-project-2026.github.io/onlineshop-168865/](https://is-project-2026.github.io/onlineshop-168865/)
 
 ## Features
 
