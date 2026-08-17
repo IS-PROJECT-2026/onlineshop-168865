@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soko Online Shop | Premium Modern E-Commerce</title>
-  <meta name="description" content="Discover premium products at Soko Online Shop. Quality electronics, fashion, home decor, and accessories with fast delivery." />
+  <title>Soko Online Shop | Handcrafted Quality Products</title>
+  <meta name="description" content="Explore authentic handcrafted baskets, textiles, jewellery, ceramics, woodwork, and leather goods at Soko Online Shop." />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- HEADER NAVIGATION -->
   <header class="header-nav">
     <div class="container nav-container">
       <a href="index.html" class="logo-brand">
@@ -37,97 +37,28 @@
 
   <!-- MAIN CONTENT -->
   <main>
-    <!-- HERO BANNER -->
+    <!-- HERO SECTION WITH WOVEN SVG ACCENT -->
     <section class="hero-banner">
       <div class="container hero-content">
-        <h1 class="hero-title">Elevate Your Everyday Style & Tech</h1>
-        <p class="hero-subtitle">Curated premium goods delivered straight to your door with fast local shipping and 100% satisfaction guarantee.</p>
+        <!-- Woven SVG Accent Graphic -->
+        <svg class="hero-woven-accent" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 20C20 12 44 12 52 20C60 28 60 52 52 44C44 36 20 36 12 44C4 52 4 28 12 20Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 12C12 20 12 44 20 52C28 60 52 60 44 52C36 44 36 20 44 12C52 4 28 4 20 12Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="32" r="6" fill="currentColor"/>
+        </svg>
+        <h1 class="hero-title">Handcrafted Treasures & Modern Artisanal Goods</h1>
+        <p class="hero-subtitle">Discover unique baskets, textiles, jewellery, ceramics, woodwork, and leather crafted with heritage and care.</p>
         <a href="#catalog" class="btn btn-primary btn-large">Explore Catalog</a>
       </div>
     </section>
 
-    <!-- CATALOG SECTION -->
-    <section class="container filter-section" id="catalog">
-      <div class="filter-bar">
-        <div class="category-tabs">
-          <button class="category-tab active" data-category="all">All Products</button>
-          <button class="category-tab" data-category="electronics">Electronics</button>
-          <button class="category-tab" data-category="fashion">Fashion</button>
-          <button class="category-tab" data-category="home">Home & Living</button>
-          <button class="category-tab" data-category="accessories">Accessories</button>
-        </div>
-        <div class="search-sort-group">
-          <input type="text" id="search-input" class="search-input" placeholder="Search products..." />
-          <select id="sort-select">
-            <option value="featured">Sort by: Featured</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Top Rated</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- PRODUCTS CATALOG GRID -->
+    <!-- PRODUCT CATALOG SECTION -->
+    <section class="container" id="catalog">
       <div id="products-grid" class="products-grid">
-        <!-- Dynamically rendered via JS -->
+        <!-- Dynamically rendered via JS below -->
       </div>
     </section>
-
-    <!-- QUICK VIEW MODAL -->
-    <div id="quick-view-modal" class="modal-overlay">
-      <div class="modal-card">
-        <button class="modal-close" onclick="closeQuickView()">&times;</button>
-        <div class="modal-body">
-          <!-- Content populated via quickview JS -->
-        </div>
-      </div>
-    </div>
   </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <div class="logo-brand">
-          <span class="logo-icon">S</span>
-          <span>SOKO</span>
-        </div>
-        <p>Your one-stop destination for quality lifestyle products, top-rated tech, and timeless fashion accessories.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="index.html">Electronics</a></li>
-          <li><a href="index.html">Fashion</a></li>
-          <li><a href="index.html">Home & Living</a></li>
-          <li><a href="index.html">Accessories</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About Soko</a></li>
-          <li><a href="about.html">Careers</a></li>
-          <li><a href="about.html">Sustainability</a></li>
-          <li><a href="about.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="cart.html">Shopping Cart</a></li>
-          <li><a href="checkout.html">Checkout Order</a></li>
-          <li><a href="about.html">FAQ & Help</a></li>
-          <li><a href="about.html">Shipping & Returns</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        &copy; 2026 Soko Online Shop (onlineshop-168865). All rights reserved.
-      </div>
-    </div>
-  </footer>
 
   <!-- SCRIPT TAGS -->
   <script src="js/products.js"></script>
