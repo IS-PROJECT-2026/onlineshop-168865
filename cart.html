@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- HEADER NAVIGATION -->
   <header class="header-nav">
     <div class="container nav-container">
       <a href="index.html" class="logo-brand">
@@ -42,12 +42,12 @@
     </div>
 
     <div class="cart-layout">
-      <!-- CART ITEMS LIST -->
+      <!-- CART ITEMS LIST / TABLE -->
       <div class="cart-items-card" id="cart-items-list">
-        <!-- Rendered via JS -->
+        <!-- Rendered dynamically via renderCartPage() -->
       </div>
 
-      <!-- SUMMARY CARD -->
+      <!-- SUMMARY BOX -->
       <div class="summary-card" id="cart-summary-box">
         <h3 class="summary-title">Order Summary</h3>
         <div class="summary-row">
@@ -55,14 +55,14 @@
           <span id="summary-subtotal">$0.00</span>
         </div>
         <div class="summary-row">
-          <span>Estimated Shipping</span>
+          <span>Estimated Delivery</span>
           <span id="summary-shipping">FREE</span>
         </div>
         <div class="summary-row">
           <span>Estimated Tax (8%)</span>
           <span id="summary-tax">$0.00</span>
         </div>
-        <div class="summary-row" style="color: var(--color-primary);">
+        <div class="summary-row" id="discount-row" style="color: var(--color-primary); display: none;">
           <span>Promo Discount</span>
           <span id="summary-discount">-$0.00</span>
         </div>
@@ -95,23 +95,22 @@
           <span class="logo-icon">S</span>
           <span>SOKO</span>
         </div>
-        <p>Your one-stop destination for quality lifestyle products, top-rated tech, and timeless fashion accessories.</p>
+        <p>Your destination for authentic handcrafted artisanal goods, textiles, and home decor.</p>
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
-          <li><a href="index.html">Electronics</a></li>
-          <li><a href="index.html">Fashion</a></li>
-          <li><a href="index.html">Home & Living</a></li>
-          <li><a href="index.html">Accessories</a></li>
+          <li><a href="index.html">Baskets</a></li>
+          <li><a href="index.html">Textiles</a></li>
+          <li><a href="index.html">Jewellery</a></li>
+          <li><a href="index.html">Leather</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Soko</a></li>
-          <li><a href="about.html">Careers</a></li>
-          <li><a href="about.html">Sustainability</a></li>
+          <li><a href="about.html">Artisans</a></li>
           <li><a href="about.html">Contact Us</a></li>
         </ul>
       </div>
@@ -119,9 +118,7 @@
         <h4>Support</h4>
         <ul>
           <li><a href="cart.html">Shopping Cart</a></li>
-          <li><a href="checkout.html">Checkout Order</a></li>
-          <li><a href="about.html">FAQ & Help</a></li>
-          <li><a href="about.html">Shipping & Returns</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
         </ul>
       </div>
     </div>
@@ -135,5 +132,123 @@
   <!-- SCRIPT TAGS -->
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
+  <script>
+    // Aliases for compatibility
+    window.cartTotal = function() {
+      return typeof getCartSubtotal === 'function' ? getCartSubtotal() : 0;
+    };
+    window.setQty = function(id, qty) {
+      if (typeof updateQuantity === 'function') updateQuantity(id, qty);
+    };
+
+    let currentDiscountRate = 0;
+
+    function renderCartPage() {
+      const cartList = document.getElementById("cart-items-list");
+      const summaryBox = document.getElementById("cart-summary-box");
+      if (!cartList) return;
+
+      const cart = typeof getCart === "function" ? getCart() : [];
+
+      if (cart.length === 0) {
+        cartList.innerHTML = `
+          <div class="empty-cart-view">
+            <div class="empty-cart-icon">🛒</div>
+            <h2>Your Shopping Cart is Empty</h2>
+            <p>Looks like you haven't added any items to your cart yet.</p>
+            <a href="index.html" class="btn btn-primary" style="margin-top: 1rem;">Explore Products</a>
+          </div>
+        `;
+        if (summaryBox) summaryBox.style.display = "none";
+        return;
+      }
+
+      if (summaryBox) summaryBox.style.display = "block";
+
+      cartList.innerHTML = `
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${cart.map(item => {
+              const itemSubtotal = item.price * item.quantity;
+              return `
+                <tr class="cart-item-row" data-id="${item.id}">
+                  <td class="cart-product-col">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-img" />
+                    <div>
+                      <h4 class="cart-item-title">${item.name}</h4>
+                      <span class="product-category">${(item.category || '').toUpperCase()}</span>
+                    </div>
+                  </td>
+                  <td>$${Number(item.price).toFixed(2)}</td>
+                  <td>
+                    <div class="cart-item-qty">
+                      <button class="qty-btn" onclick="setQty('${item.id}', ${item.quantity - 1})">-</button>
+                      <span class="qty-val">${item.quantity}</span>
+                      <button class="qty-btn" onclick="setQty('${item.id}', ${item.quantity + 1})">+</button>
+                    </div>
+                  </td>
+                  <td class="cart-item-subtotal">$${itemSubtotal.toFixed(2)}</td>
+                  <td>
+                    <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" title="Remove item">&times;</button>
+                  </td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      `;
+
+      // Update Summary Values
+      const subtotal = cartTotal();
+      const shipping = subtotal > 100 ? 0 : 9.99;
+      const tax = subtotal * 0.08;
+      const discount = subtotal * currentDiscountRate;
+      const total = Math.max(0, subtotal + shipping + tax - discount);
+
+      const elemSubtotal = document.getElementById("summary-subtotal");
+      const elemShipping = document.getElementById("summary-shipping");
+      const elemTax = document.getElementById("summary-tax");
+      const elemDiscount = document.getElementById("summary-discount");
+      const discountRow = document.getElementById("discount-row");
+      const elemTotal = document.getElementById("summary-total");
+
+      if (elemSubtotal) elemSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      if (elemShipping) elemShipping.textContent = shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`;
+      if (elemTax) elemTax.textContent = `$${tax.toFixed(2)}`;
+      if (elemDiscount) elemDiscount.textContent = `-$${discount.toFixed(2)}`;
+      if (discountRow) discountRow.style.display = discount > 0 ? "flex" : "none";
+      if (elemTotal) elemTotal.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function applyPromoCode() {
+      const codeInput = document.getElementById("promo-code-input");
+      if (!codeInput) return;
+      const code = codeInput.value.trim().toUpperCase();
+      if (code === "SOKO10") {
+        currentDiscountRate = 0.10;
+        if (typeof showToast === 'function') showToast("Promo code applied: 10% Off!", "success");
+      } else if (code === "SOKO20") {
+        currentDiscountRate = 0.20;
+        if (typeof showToast === 'function') showToast("Promo code applied: 20% Off!", "success");
+      } else {
+        if (typeof showToast === 'function') showToast("Invalid promo code. Try SOKO10", "error");
+        currentDiscountRate = 0;
+      }
+      renderCartPage();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCartPage();
+    });
+  </script>
 </body>
 </html>
