@@ -812,3 +812,18 @@ button {
     display: inline-flex;
   }
 }
+
+/* --- ACCESSIBILITY FOCUS AUDIT FIXES (ISSUE #12) --- */
+.add-btn:focus-visible,
+.add-to-cart-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.main-nav a.cart-link:focus-visible,
+.nav-links a.cart-link:focus-visible,
+a.cart-link:focus-visible,
+.cart-icon-btn:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
