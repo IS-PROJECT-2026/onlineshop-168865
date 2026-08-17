@@ -41,6 +41,15 @@
       <h1 class="page-title">Secure Checkout</h1>
     </div>
 
+    <!-- EMPTY CART VIEW (SHOWS IF BASKET IS EMPTY) -->
+    <div id="checkout-empty-state" class="empty-cart-view" style="display: none;">
+      <div class="empty-cart-icon">🛒</div>
+      <h2>Your Cart is Currently Empty</h2>
+      <p>Please add items to your cart before proceeding to checkout.</p>
+      <a href="index.html" class="btn btn-primary" style="margin-top: 1rem;">Return to Shop</a>
+    </div>
+
+    <!-- CHECKOUT FORM -->
     <form id="checkout-form" class="checkout-layout">
       <!-- FORM COL -->
       <div>
@@ -86,7 +95,7 @@
             <label class="radio-option">
               <input type="radio" name="shipping-method" value="standard" checked />
               <div>
-                <strong>Standard Shipping</strong>
+                <strong>Standard Delivery</strong>
                 <p style="font-size: 0.85rem; color: var(--color-text-muted);">Delivered in 2-4 business days</p>
               </div>
             </label>
@@ -94,7 +103,7 @@
               <input type="radio" name="shipping-method" value="express" />
               <div>
                 <strong>Express Delivery ($19.99)</strong>
-                <p style="font-size: 0.85rem; color: var(--color-text-muted);">Next business day guaranteed delivery</p>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted);">Next business day delivery</p>
               </div>
             </label>
           </div>
@@ -102,7 +111,7 @@
 
         <!-- SECTION 3: PAYMENT METHOD -->
         <div class="form-section-card">
-          <h3 class="section-h3"><span>3.</span> Payment Option</h3>
+          <h3 class="section-h3"><span>3.</span> Payment Method</h3>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="payment-method" value="card" checked />
@@ -115,14 +124,14 @@
               <input type="radio" name="payment-method" value="mpesa" />
               <div>
                 <strong>Mobile Money (M-Pesa / Mobile Payment)</strong>
-                <p style="font-size: 0.85rem; color: var(--color-text-muted);">Instant mobile payment checkout</p>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted);">Instant mobile payment</p>
               </div>
             </label>
             <label class="radio-option">
               <input type="radio" name="payment-method" value="cod" />
               <div>
                 <strong>Cash on Delivery</strong>
-                <p style="font-size: 0.85rem; color: var(--color-text-muted);">Pay in cash when package arrives</p>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted);">Pay upon delivery arrival</p>
               </div>
             </label>
           </div>
@@ -131,7 +140,7 @@
 
       <!-- ORDER SUMMARY COL -->
       <div class="summary-card">
-        <h3 class="summary-title">Order Items</h3>
+        <h3 class="summary-title">Order Summary</h3>
         <div id="checkout-items-summary">
           <!-- Rendered via JS -->
         </div>
@@ -145,7 +154,7 @@
           <span id="checkout-shipping">FREE</span>
         </div>
         <div class="summary-row">
-          <span>Tax</span>
+          <span>Tax (8%)</span>
           <span id="checkout-tax">$0.00</span>
         </div>
         <div class="summary-row total-row">
@@ -154,24 +163,10 @@
         </div>
 
         <button type="submit" class="btn btn-primary btn-large" style="width: 100%; margin-top: 1.5rem;">
-          Place Order Now 🔒
+          Place Order 🔒
         </button>
       </div>
     </form>
-
-    <!-- ORDER CONFIRMATION MODAL -->
-    <div id="order-confirmation-modal" class="modal-overlay">
-      <div class="modal-card" style="text-align: center; max-width: 500px;">
-        <div style="font-size: 4rem; color: var(--color-primary); margin-bottom: 1rem;">🎉</div>
-        <h2>Thank You For Your Order!</h2>
-        <p style="color: var(--color-text-muted); margin: 1rem 0;">Your purchase has been placed successfully. A confirmation email and tracking link have been dispatched.</p>
-        <div style="background: var(--color-bg-main); padding: 1rem; border-radius: var(--radius-sm); border: 1px inline var(--color-border); margin-bottom: 1.5rem;">
-          <span style="font-size: 0.85rem; color: var(--color-text-muted);">Order Reference Number:</span><br />
-          <strong id="order-ref-number" style="font-size: 1.4rem; color: var(--color-primary);">SOKO-000000</strong>
-        </div>
-        <a href="index.html" class="btn btn-primary btn-large" style="width: 100%;">Return to Storefront</a>
-      </div>
-    </div>
   </main>
 
   <!-- FOOTER -->
@@ -182,23 +177,22 @@
           <span class="logo-icon">S</span>
           <span>SOKO</span>
         </div>
-        <p>Your one-stop destination for quality lifestyle products, top-rated tech, and timeless fashion accessories.</p>
+        <p>Your destination for authentic handcrafted artisanal goods, textiles, and home decor.</p>
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
-          <li><a href="index.html">Electronics</a></li>
-          <li><a href="index.html">Fashion</a></li>
-          <li><a href="index.html">Home & Living</a></li>
-          <li><a href="index.html">Accessories</a></li>
+          <li><a href="index.html">Baskets</a></li>
+          <li><a href="index.html">Textiles</a></li>
+          <li><a href="index.html">Jewellery</a></li>
+          <li><a href="index.html">Leather</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Soko</a></li>
-          <li><a href="about.html">Careers</a></li>
-          <li><a href="about.html">Sustainability</a></li>
+          <li><a href="about.html">Artisans</a></li>
           <li><a href="about.html">Contact Us</a></li>
         </ul>
       </div>
@@ -206,9 +200,7 @@
         <h4>Support</h4>
         <ul>
           <li><a href="cart.html">Shopping Cart</a></li>
-          <li><a href="checkout.html">Checkout Order</a></li>
-          <li><a href="about.html">FAQ & Help</a></li>
-          <li><a href="about.html">Shipping & Returns</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
         </ul>
       </div>
     </div>
@@ -222,5 +214,69 @@
   <!-- SCRIPT TAGS -->
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
+  <script>
+    function renderCheckoutPage() {
+      const cart = typeof getCart === "function" ? getCart() : [];
+      const form = document.getElementById("checkout-form");
+      const emptyState = document.getElementById("checkout-empty-state");
+      const summaryList = document.getElementById("checkout-items-summary");
+
+      if (cart.length === 0) {
+        if (form) form.style.display = "none";
+        if (emptyState) emptyState.style.display = "block";
+        return;
+      }
+
+      if (form) form.style.display = "grid";
+      if (emptyState) emptyState.style.display = "none";
+
+      if (summaryList) {
+        summaryList.innerHTML = cart.map(item => `
+          <div class="checkout-item-row">
+            <img src="${item.image}" alt="${item.name}" />
+            <div class="checkout-item-info">
+              <h5>${item.name}</h5>
+              <span>Qty: ${item.quantity} × $${Number(item.price).toFixed(2)}</span>
+            </div>
+            <span class="checkout-item-total">$${(item.price * item.quantity).toFixed(2)}</span>
+          </div>
+        `).join("");
+      }
+
+      const subtotal = typeof getCartSubtotal === "function" ? getCartSubtotal() : 0;
+      const shipping = subtotal > 100 ? 0 : 9.99;
+      const tax = subtotal * 0.08;
+      const total = subtotal + shipping + tax;
+
+      const elemSubtotal = document.getElementById("checkout-subtotal");
+      const elemShipping = document.getElementById("checkout-shipping");
+      const elemTax = document.getElementById("checkout-tax");
+      const elemTotal = document.getElementById("checkout-total");
+
+      if (elemSubtotal) elemSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      if (elemShipping) elemShipping.textContent = shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`;
+      if (elemTax) elemTax.textContent = `$${tax.toFixed(2)}`;
+      if (elemTotal) elemTotal.textContent = `$${total.toFixed(2)}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCheckoutPage();
+
+      const checkoutForm = document.getElementById("checkout-form");
+      if (checkoutForm) {
+        checkoutForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (!checkoutForm.checkValidity()) {
+            checkoutForm.reportValidity();
+            return;
+          }
+          // Form validated successfully - stops here for Issue #9
+          if (typeof showToast === "function") {
+            showToast("Form validated! Order confirmation comes in Issue #10.", "info");
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
