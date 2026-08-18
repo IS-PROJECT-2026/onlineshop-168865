@@ -1,3 +1,4 @@
+// Active SOKO Shopping Basket Controller - Conflict D Edit
 /**
  * SOKO Online Shop - Cart & Storefront Controller
  * LocalStorage persistent cart state management for Issue #7.
